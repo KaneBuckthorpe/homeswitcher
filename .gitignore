@@ -1,0 +1,6 @@
+*.deb
+./.theos
+./packages
+./obj
+./Makefile
+./theos

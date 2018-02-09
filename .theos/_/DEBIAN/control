@@ -1,0 +1,10 @@
+Package: com.indieDev.homeSwitcher
+Name: HomeSwitcher
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: Homescreen App Switcher
+Maintainer: indieDev
+Author: indieDev
+Section: Tweaks
+Version: 0.0.1-966+debug
+Installed-Size: 228
