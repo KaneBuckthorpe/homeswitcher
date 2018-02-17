@@ -32,18 +32,18 @@ for(UIScrollView *b in topViewSB.subviews){
 homeView = [[HSHomeView alloc] init];
     switcherView = [[HSCollectionView alloc] init];
 
-UIView*rightArrow = [[UIView alloc] initWithFrame:CGRectMake(switcherView.frame.size.width-20, switcherView.frame.origin.y ,20, switcherView.frame.size.height)];
+UIView*rightArrow = [[UIView alloc] initWithFrame:CGRectMake(switcherView.frame.size.width-20, 0 ,20, switcherView.frame.size.height)];
 [rightArrow setUserInteractionEnabled:YES];
 rightArrow.backgroundColor=[UIColor clearColor];
 rightArrow.alpha =1;
 
 
-UIView*leftArrow = [[UIView alloc] initWithFrame:CGRectMake(0, switcherView.frame.origin.y, 30, switcherView.frame.size.height)];
+UIView*leftArrow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, switcherView.frame.size.height)];
 [leftArrow setUserInteractionEnabled:YES];
 leftArrow.backgroundColor=[UIColor clearColor];
 leftArrow.alpha=1;
 
-UIView*centerButton = [[UIView alloc] initWithFrame:CGRectMake(switcherView.frame.size.width/2-50, switcherView.frame.origin.y+switcherView.frame.size.height-10 ,100, 20)];
+UIView*centerButton = [[UIView alloc] initWithFrame:CGRectMake(switcherView.frame.size.width/2-100, switcherView.frame.size.height-15 ,200, 15)];
 [centerButton setUserInteractionEnabled:YES];
 centerButton.backgroundColor=[UIColor clearColor];
 centerButton.alpha =1;
@@ -75,9 +75,9 @@ switcherCenter = switcherView.center;
     [topViewSB
  addSubview:homeView];
    [homeView addSubview:switcherView];
-[homeView addSubview:rightArrow];
-[homeView addSubview:centerButton];
-[homeView addSubview:leftArrow];
+[switcherView.backgroundView addSubview:rightArrow];
+[switcherView.backgroundView addSubview:centerButton];
+[switcherView.backgroundView addSubview:leftArrow];
 ///switcherView.backgroundView =blurView; 
 [switcherView reloadSwitcher];
 }

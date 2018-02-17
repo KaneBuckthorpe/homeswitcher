@@ -29,13 +29,23 @@ layout.minimumLineSpacing = 0;
     self.backgroundColor = [UIColor clearColor];
 self.decelerationRate = UIScrollViewDecelerationRateNormal;
 
+/*
+NSArray* touches = MSHookIvar<NSArray*>(self, "_touches");
+    UITouch* touch = [touches anyObject];
+    CGFloat pressure = MSHookIvar<CGFloat>(touch, "_previousPressure");
+    NSLog(@"self.pressure: %f", pressure); 
 
+    if (pressure > 900) {
+        [self performSelector:@selector(forceTouchCell) withObject:self afterDelay:0.1];
+
+}
+*/
     [self registerClass:[HSAppCardCell class] forCellWithReuseIdentifier:@"switcherCell"];
 
     [self setDataSource:self];
     [self setDelegate:self];
-  }
-
+  
+}
   return self;
 }
 -(void)reloadSwitcher{
@@ -76,11 +86,14 @@ self.switcherItems = [[%c(SBAppSwitcherModel) sharedInstance]  mainSwitcherDispl
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-
+int count = [self.switcherItems count];
+if (count ==0){
+return 1;
+}else {
     return [self.switcherItems count];
 
 }
-
+}
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -90,7 +103,17 @@ self.switcherItems = [[%c(SBAppSwitcherModel) sharedInstance]  mainSwitcherDispl
 cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"switcherCell" forIndexPath:indexPath];
     cell.backgroundColor=[UIColor clearColor];
 
+int count = [self.switcherItems count];
+if (count ==0){
 
+cell.bundleID = nil;
+cell.indexPath=nil;
+cell.iconImageView.image=nil;
+cell.appNameLabel.text = nil;
+cell.appImageView.image=nil;
+
+return cell;
+}else {
 
     NSString *bundleID = [self.switcherItems[indexPath.row] displayIdentifier];
 cell.bundleID = bundleID;
@@ -130,11 +153,15 @@ cell.appImageView.contentMode = UIViewContentModeTopLeft;
 cell.appImageView.image=squareSnapshotImage;
 
 
+    
         
 return cell;
-
+}
 }
 
+-(void) forceTouchCell {
+[self scrollToStart];
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(cellWidth, self.bounds.size.height);

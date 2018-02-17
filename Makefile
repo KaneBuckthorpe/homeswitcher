@@ -19,3 +19,5 @@ HomeSwitcher_CFLAGS = -fobjc-arc
 
 after-install::
 	install.exec "killall -9 SpringBoard"
+SUBPROJECTS += HomeSwitcher
+include $(THEOS_MAKE_PATH)/aggregate.mk

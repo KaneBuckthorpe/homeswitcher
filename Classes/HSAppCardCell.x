@@ -75,11 +75,31 @@ self.zoomView.layer.shadowOffset = CGSizeMake(0,0 );
 /*
       [self.zoomView addSubview:self.appNameLabel];
 */
+
     }
     return self;
 }
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [super touchesMoved:touches withEvent:event];
 
+    UITouch *touch = [touches anyObject];
 
+    CGFloat maximumPossibleForce = touch.maximumPossibleForce;
+    CGFloat force = touch.force;
+
+    NSLog(@"***** force value : %f", force);
+
+    CGFloat normalizedForce = force/maximumPossibleForce;
+
+    NSLog(@"Normalized force : %f", normalizedForce);
+
+    if (normalizedForce > 0.75){
+        [self closeApp];
+    } else if (normalizedForce > 0.20){
+        [self closeApp];
+    }
+}
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
 if (deletingApp){
