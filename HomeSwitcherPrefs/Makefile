@@ -1,10 +1,12 @@
 include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = HomeSwitcher
-HomeSwitcher_FILES = HSRootListController.m
+HomeSwitcher_FILES = HSRootListController.xm HSInstructionsController.xm PSStepperCell.m HSSliderCell.m
 HomeSwitcher_INSTALL_PATH = /Library/PreferenceBundles
-HomeSwitcher_FRAMEWORKS = UIKit
+HomeSwitcher_FRAMEWORKS = UIKit CoreGraphics Foundation
 HomeSwitcher_PRIVATE_FRAMEWORKS = Preferences
+
+TWEAKNAMEPREFS_LIBRARIES = colorpicker
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

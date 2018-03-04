@@ -1,37 +1,26 @@
-@interface _UIBackdropView : UIView
-- (id)initWithFrame:(CGRect)arg1 autosizesToFitSuperview:(BOOL)arg2 settings:(id)arg3;
-- (id)initWithPrivateStyle:(int)arg1;
-- (id)initWithSettings:(id)arg1;
-- (id)initWithStyle:(int)arg1;
-+ (id)allBackdropViews;
-
-- (void)setBlurFilterWithRadius:(float)arg1 blurQuality:(id)arg2 blurHardEdges:(int)arg3;
-- (void)setBlurFilterWithRadius:(float)arg1 blurQuality:(id)arg2;
-- (void)setBlurHardEdges:(int)arg1;
-- (void)setBlurQuality:(id)arg1;
-- (void)setBlurRadius:(float)arg1;
-- (void)setBlurRadiusSetOnce:(BOOL)arg1;
-- (void)setBlursBackground:(BOOL)arg1;
-- (void)setBlursWithHardEdges:(BOOL)arg1;
-- (void)setStyle:(int)arg1;
+#import <SpringBoard/SBRootFolderView.h>
+#import <notify.h>
+@interface SBRecentAppLayouts: NSObject
++ (id)sharedInstance;
+-(id)_recentsFromPrefs;
+-(void)remove:(id)arg1 ;
 @end
 
-@interface _UIBackdropViewSettings : NSObject
-+(id) settingsForStyle:(int)arg1;
+@interface SBUIController : NSObject
++(id)sharedInstance;
+-(void)clickedMenuButton;
+-(void)activateApplication:(id)arg1 ;
+-(BOOL)isAppSwitcherShowing;
 @end
+
 @interface SBApplicationController : NSObject
 +(id)sharedInstance;
 -(id)applicationWithBundleIdentifier:(id)arg1;
 +(id)sharedInstanceIfExists;
 @end
 
-@interface SBUIController: NSObject
-+(id)sharedInstanceIfExists;
--(void)activateApplication:(id)arg1 ;
-@end
-
-@interface SBApplication
--(int)pid;
+@interface SBApplication : NSObject
+- (int)pid;
 @end
 
 @interface UIApplication (HomeSwitcher)
@@ -43,20 +32,31 @@
 @property (nonatomic, copy, readonly) NSString *displayIdentifier;
 @end
 
+@interface SBAppLayout:NSObject<NSCopying>
+-(id)allItems;
+@end
+
 @interface SBAppSwitcherModel :NSObject{
 	NSMutableArray* _recentDisplayItems;
 }
 
 + (id)sharedInstance;
--(id)mainSwitcherDisplayItems;
+-(id)_recentsFromPrefs;
 -(void)remove:(id)arg1 ;
 @end
 
-@interface MYView :UIView<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-{
-    UICollectionView *_collectionView;
-    NSArray<SBDisplayItem *> *switcherApps;
-}
+@interface SBFolderController : UIView
+@property (nonatomic,retain,readonly) SBFolderView* contentView;
+-(unsigned long long)iconListViewCount;
+@end
+
+@interface SBRootFolderController:SBFolderController
+@end
+
+@interface SBIconController : NSObject
++(id)sharedInstance;
+- (id)contentView;
+-(SBFolderController*)_rootFolderController;
 @end
 
 @interface UIImage (IndieDev)
@@ -75,5 +75,16 @@
 @interface LSApplicationWorkspace : NSObject
  +(id)defaultWorkspace;
 - (BOOL)openApplicationWithBundleID:(NSString *)bundleID;
+@end
 
+@interface CPDistributedMessagingCenter : NSObject
++(CPDistributedMessagingCenter*)centerNamed:(NSString*)serverName;
+-(void)registerForMessageName:(NSString*)messageName target:(id)target selector:(SEL)selector;
+-(NSDictionary*)sendMessageAndReceiveReplyName:(NSString*)name userInfo:(NSDictionary*)info;
+-(void)runServerOnCurrentThread;
+@end
+
+@interface SpringBoard:NSObject
+-(void)loadPrefs;
+-(void)updateSwitcherForPrefs;
 @end
