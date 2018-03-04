@@ -1,25 +1,60 @@
 #import "HSCollectionView.h"
 
+int iOS;
+static NSUserDefaults *preferences;
+static NSInteger appcardNumber;
+static NSString* shadowColorHex;
+UIColor *shadowColor;
+static NSString *fallbackHex;
+
 float screenWidth=[[UIScreen mainScreen] bounds].size.width;
-float cellWidth =screenWidth/5.5;
+float cellWidth =screenWidth/(appcardNumber+0.5);
 float imageViewSize = cellWidth;
 float iconSize =imageViewSize/4;
 float scrollStartPoint = cellWidth;
 float pageStartInset = screenWidth/2-cellWidth/2;
+int targetCellIndex;
+CGRect switcherFrame;
+
+
 
 @implementation HSCollectionView
 - (id)init{
-  CGRect frame = CGRectMake( 0, [[UIScreen mainScreen] bounds].size.height *0.25, screenWidth, imageViewSize+iconSize/2+20);
+if (kCFCoreFoundationVersionNumber>=1443.00){
+iOS=11;
+} else{
+iOS=10;
+}
 
-  UICollectionViewFlowLayout * layout = [UICollectionViewFlowLayout new];
+
+[self loadPrefs];
+  [self updateForPrefs];
+
+switcherFrame=CGRectMake(0, ([[UIScreen mainScreen] bounds].size.height)*0.5, [[UIScreen mainScreen] bounds].size.width,(cellWidth+iconSize/2)+20);
+
+UICollectionViewFlowLayout * layout;
+layout = [UICollectionViewFlowLayout new];
   layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 layout.minimumInteritemSpacing = 0;
 layout.minimumLineSpacing = 0;
 
 
-  if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
+  if (self = [super initWithFrame:switcherFrame collectionViewLayout:layout]) {
+
+  
 
 
+
+ 
+
+int regToken;
+notify_register_dispatch("com.kaneb.HomeSwitcher/CprefsChanged", &regToken, dispatch_get_main_queue(), ^(int token) {
+[self loadPrefs];
+
+            [self updateForPrefs];
+[self loadPrefs];
+        });
+    [self setValue:[NSValue valueWithCGSize:CGSizeMake(0.996000f,0.996000f)] forKey:@"_decelerationFactor"];
     self.pagingEnabled = NO;
     self.userInteractionEnabled = YES;
     self.showsHorizontalScrollIndicator = NO;
@@ -27,19 +62,7 @@ layout.minimumLineSpacing = 0;
     self.alwaysBounceHorizontal = NO;
     self.clipsToBounds = NO;
     self.backgroundColor = [UIColor clearColor];
-self.decelerationRate = UIScrollViewDecelerationRateNormal;
-
-/*
-NSArray* touches = MSHookIvar<NSArray*>(self, "_touches");
-    UITouch* touch = [touches anyObject];
-    CGFloat pressure = MSHookIvar<CGFloat>(touch, "_previousPressure");
-    NSLog(@"self.pressure: %f", pressure); 
-
-    if (pressure > 900) {
-        [self performSelector:@selector(forceTouchCell) withObject:self afterDelay:0.1];
-
-}
-*/
+///self.decelerationRate = UIScrollViewDecelerationRateNormal;
     [self registerClass:[HSAppCardCell class] forCellWithReuseIdentifier:@"switcherCell"];
 
     [self setDataSource:self];
@@ -48,29 +71,79 @@ NSArray* touches = MSHookIvar<NSArray*>(self, "_touches");
 }
   return self;
 }
+-(void)loadPrefs{
+preferences = [[NSUserDefaults alloc] initWithSuiteName:@"com.kaneb.HomeSwitcher"];
+       
+
+	[preferences registerDefaults:@{
+		@"appcardNumber":	[NSNumber numberWithInteger:3],
+
+	}];
+
+appcardNumber		= [preferences integerForKey:@"appcardNumber"];
+
+
+}
+-(void)updateForPrefs{
+cellWidth =screenWidth/(appcardNumber+0.5);
+imageViewSize = cellWidth;
+iconSize =imageViewSize/4;
+scrollStartPoint = cellWidth;
+pageStartInset = screenWidth/2-cellWidth/2;
+}
+
 -(void)reloadSwitcher{
-self.switcherItems = [[%c(SBAppSwitcherModel) sharedInstance]  mainSwitcherDisplayItems];
-    [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
-[self 
+NSMutableArray *holding = [NSMutableArray new];
+
+if(iOS==11){
+SBRecentAppLayouts *recentLayouts = [%c(SBRecentAppLayouts) sharedInstance];
+NSMutableArray *recentAppLayouts = [NSMutableArray new];
+recentAppLayouts= [recentLayouts _recentsFromPrefs];
+for (SBAppLayout *appLayout in recentAppLayouts) {
+[holding addObjectsFromArray:appLayout.allItems];
+}
+} else{
+SBAppSwitcherModel *switcherModel = [%c(SBAppSwitcherModel) sharedInstance];
+holding= [switcherModel _recentsFromPrefs];
+}
+
+
+if ([holding count] ==0 && [self.switcherItems count] ==0){
+self.switcherItems = nil;
+[self reloadData];
+}else{
+self.switcherItems =holding;
+[self reloadSections:[NSIndexSet indexSetWithIndex:0]];
+[self
 updateCellsLayout];
 }
+}
 -(void)reloadAndScroll{
-NSLog(@"reloading Switcher");
+NSMutableArray *holding = [NSMutableArray new];
 
-self.switcherItems = [[%c(SBAppSwitcherModel) sharedInstance]  mainSwitcherDisplayItems];
-
-/*
-[self performBatchUpdates:^{
-    [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
-} completion:nil];
-*/
-//dispatch_async(dispatch_get_main_queue(), ^{
-[self reloadData];
-//});
-
-[self scrollToStartAnimated];
+if(iOS==11){
+SBRecentAppLayouts *recentLayouts = [%c(SBRecentAppLayouts) sharedInstance];
+NSMutableArray *recentAppLayouts = [NSMutableArray new];
+recentAppLayouts= [recentLayouts _recentsFromPrefs];
+for (SBAppLayout *appLayout in recentAppLayouts) {
+[holding addObjectsFromArray:appLayout.allItems];
+}
+} else{
+SBAppSwitcherModel *switcherModel = [%c(SBAppSwitcherModel) sharedInstance];
+holding= [switcherModel _recentsFromPrefs];
 }
 
+
+
+if ([holding count] ==0 && [self.switcherItems count] ==0){
+self.switcherItems = nil;
+[self reloadData];
+}else{
+self.switcherItems =holding;
+[self reloadSections:[NSIndexSet indexSetWithIndex:0]];
+[self scrollToCenterAnimated];
+}
+}
 - (UIImage *)squareImageFromImage: (UIImage *)image{
     return [[UIImage alloc] initWithCGImage:CGImageCreateWithImageInRect(image.CGImage, CGRectMake(0, 0, image.size.width, image.size.width))];
 }
@@ -90,12 +163,10 @@ int count = [self.switcherItems count];
 if (count ==0){
 return 1;
 }else {
-    return [self.switcherItems count];
+    return count;
 
 }
 }
-
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HSAppCardCell *cell;
@@ -111,8 +182,9 @@ cell.indexPath=nil;
 cell.iconImageView.image=nil;
 cell.appNameLabel.text = nil;
 cell.appImageView.image=nil;
+cell.appImageView.backgroundColor = UIColor.clearColor;
+cell.zoomView.layer.shadowColor=UIColor.clearColor.CGColor;
 
-return cell;
 }else {
 
     NSString *bundleID = [self.switcherItems[indexPath.row] displayIdentifier];
@@ -143,25 +215,18 @@ if(snapshotImage.size.width >snapshotImage.size.height ){
 snapshotImage= [UIImage
 imageWithContentsOfFile:[pathToSnaps stringByAppendingPathComponent:appSnaps.lastObject]];
 }
-/*
-UIImage *croppedSnapshotImage = [self squareImageFromImage:snapshotImage];
-*/
 
 UIImage *squareSnapshotImage = [self imageWithImage:snapshotImage scaledToSize:CGSizeMake(cell.appImageView.frame.size.width, cell.appImageView.frame.size.width*1.78)];
 cell.appImageView.contentMode = UIViewContentModeTopLeft;
 
 cell.appImageView.image=squareSnapshotImage;
+cell.appImageView.backgroundColor = UIColor.whiteColor;
+cell.zoomView.layer.shadowColor=shadowColor.CGColor;
 
-
-    
-        
+}
 return cell;
 }
-}
 
--(void) forceTouchCell {
-[self scrollToStart];
-}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(cellWidth, self.bounds.size.height);
@@ -170,7 +235,7 @@ return cell;
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                         layout:(UICollectionViewLayout *)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section {
-return UIEdgeInsetsMake(20,pageStartInset,0,pageStartInset);
+return UIEdgeInsetsMake(0,pageStartInset,0,pageStartInset);
 }
 
 
@@ -189,8 +254,7 @@ if(currentOffset<0){
 
 }
 
--(void)scrollToStartAnimated{
-///if(self.contentOffset.x !=0){
+-(void)scrollToCenterAnimated{
 
  [UIView animateWithDuration:0.5 delay:0 options: UIViewAnimationOptionCurveEaseInOut  animations:^{ 
 if ([self.switcherItems count]==1){
@@ -205,23 +269,17 @@ if ([self.switcherItems count]==1){
 }completion:nil];
                   
 }];
-/*
-}else {
- [UIView animateWithDuration:0.5 delay:0 options: UIViewAnimationOptionCurveEaseInOut  animations:^{ 
-[self updateCellsLayout];
-}completion:nil];
-*/
-///}
 }
 - (void) updateCellsLayout{
 
     double centerX = self.contentOffset.x + (self.frame.size.width)/2;
-    for (HSAppCardCell *cell in self.subviews) {
+    for (HSAppCardCell *cell in self.visibleCells) {
 
         double offsetX = centerX - cell.center.x;
         if (offsetX < 0) {
             offsetX *= -1;
 }
+
         cell.transform = CGAffineTransformIdentity;
         double offsetPercentage = offsetX / screenWidth;
         CGFloat scaleX = (CGFloat) (1.0f-offsetPercentage);
@@ -250,5 +308,14 @@ if ([self.switcherItems count]==1){
 
     targetContentOffset->x = currentOffset;
     [scrollView setContentOffset:CGPointMake(newTargetOffset, scrollView.contentOffset.y) animated:YES];
+
+    float target = targetContentOffset->x;
+    float remainder = target / cellWidth;
+    targetCellIndex = lroundl(remainder);
 }
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:targetCellIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+}
+
 @end

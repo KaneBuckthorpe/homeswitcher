@@ -1,9 +1,19 @@
 #import "HSAppCardCell.h"
 
+int iOS;
+
 @implementation HSAppCardCell
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]){
+if (kCFCoreFoundationVersionNumber>=1443.00){
+iOS=11;
+} else{
+iOS=10;
+}
+
+
+
       deletingApp=NO;
       openingApp=NO;
 self.clipsToBounds = NO;
@@ -51,8 +61,8 @@ self.overlay.backgroundColor=[UIColor colorWithRed:1 green:0 blue:0 alpha:0];
       UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
 
       self.zoomView = [[UIView alloc] initWithFrame:scrollView.bounds];
-self.zoomView.layer.shadowColor=[UIColor whiteColor].CGColor; 
-      [self.zoomView.layer setShadowOpacity:0.5];
+///self.zoomView.layer.shadowColor=[UIColor whiteColor].CGColor; 
+[self.zoomView.layer setShadowOpacity:1];
 self.zoomView.layer.shadowRadius=8; 
 self.zoomView.layer.shadowOffset = CGSizeMake(0,0 ); 
 
@@ -79,27 +89,7 @@ self.zoomView.layer.shadowOffset = CGSizeMake(0,0 );
     }
     return self;
 }
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [super touchesMoved:touches withEvent:event];
 
-    UITouch *touch = [touches anyObject];
-
-    CGFloat maximumPossibleForce = touch.maximumPossibleForce;
-    CGFloat force = touch.force;
-
-    NSLog(@"***** force value : %f", force);
-
-    CGFloat normalizedForce = force/maximumPossibleForce;
-
-    NSLog(@"Normalized force : %f", normalizedForce);
-
-    if (normalizedForce > 0.75){
-        [self closeApp];
-    } else if (normalizedForce > 0.20){
-        [self closeApp];
-    }
-}
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
 if (deletingApp){
@@ -115,19 +105,19 @@ openingApp=NO;
 }];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-float percent = (scrollView.contentOffset.y / 150.0);
+float percent = (scrollView.contentOffset.y / 100.0);
 
 
     if(scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= self.bounds.size.height*0.2) {
-NSLog(@"0 To 150");
+
 
                self.alpha = 1-percent;
 
-self.zoomView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1-percent/2, 1-percent/2);
+self.zoomView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1-percent, 1-percent);
 deletingApp=NO;
 ///openingApp=NO;
     } else if (scrollView.contentOffset.y > self.bounds.size.height*0.2){
-        self.alpha = 1-percent;
+        self.alpha = 1-percent*2;
 deletingApp=YES;
 openingApp=NO;
 
@@ -156,21 +146,47 @@ NSLog(@"opening app");
 NSLog(@"close App");
 
 SBApplication *application = [[NSClassFromString(@"SBApplicationController") sharedInstance] applicationWithBundleIdentifier:self.bundleID];
+if (iOS==11){
 
+}else{
 	// This closes the app
 	if (application.pid > 0) {
 		kill(application.pid, SIGUSR1);
 	}
+}
 
-		SBAppSwitcherModel *model = [NSClassFromString(@"SBAppSwitcherModel") sharedInstance];
 
-		SBDisplayItem *itemToRemove;
-		for(SBDisplayItem *displayItem in [model valueForKey:@"mainSwitcherDisplayItems"]) {
+SBAppSwitcherModel *appSwitcherModel = [NSClassFromString(@"SBAppSwitcherModel") sharedInstance];
+
+if (iOS==11){
+NSMutableArray *holding = [NSMutableArray new];
+SBDisplayItem *appToClose;
+SBRecentAppLayouts *recentLayouts = [%c(SBRecentAppLayouts) sharedInstance];
+NSMutableArray *recentAppLayouts = [NSMutableArray new];
+recentAppLayouts= [recentLayouts _recentsFromPrefs];
+for (SBAppLayout *appLayout in recentAppLayouts) {
+[holding addObjectsFromArray:appLayout.allItems];
+}
+for(SBDisplayItem *displayItem in holding) {
+
+if([[displayItem valueForKey:@"_displayIdentifier"] isEqualToString:self.bundleID]) {
+appToClose = displayItem;
+
+}
+}
+[recentLayouts remove:appToClose];
+} else{
+SBDisplayItem *itemToRemove;
+
+		for(SBDisplayItem *displayItem in [appSwitcherModel valueForKey:@"_recentsFromPrefs"]) {
 			if([[displayItem valueForKey:@"_displayIdentifier"] isEqualToString:self.bundleID]) {
 				itemToRemove = displayItem;
 			}
 		}
-		[model remove:itemToRemove];
+[appSwitcherModel remove:itemToRemove];
+}
+
+
 
 [self.superview performSelector:@selector(reloadSwitcher) withObject:nil afterDelay:0.0];
 
