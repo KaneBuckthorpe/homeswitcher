@@ -24,7 +24,7 @@ Get New Display Events
 https://repo.packix.com/package/com.kanebuckthorpe.newdisplayevents/
 
 ---
-##Information
+## Information
 
 This was my first attempt at using a UICollectionView aswell as using third party libraries (libactivator).
 This tweak was made entierly using filza's simple text editor on a jailbroken iPhone. To avoid working with large files on my device, I tried to make the collectionView as self contained at possible.
