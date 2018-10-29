@@ -17,13 +17,13 @@ To show and hide HomeSwitcher between apps, Homescreen, Lockscreen and AppSwitch
 
 Get activator
 
-http://rpetri.ch/reposetup/
+[Repo](http://rpetri.ch/reposetup)
 
 Get New Display Events
 
-https://repo.packix.com/package/com.kanebuckthorpe.newdisplayevents/
+[Repo](https://repo.packix.com/package/com.kanebuckthorpe.newdisplayevents)
 
-[Source code](https://github.com/kanesbetas/New-Display-Events)
+[Github](https://github.com/kanesbetas/New-Display-Events)
 
 ---
 ## Information
