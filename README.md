@@ -23,7 +23,7 @@ Get New Display Events
 
 https://repo.packix.com/package/com.kanebuckthorpe.newdisplayevents/
 
-[Source code] (https://github.com/kanesbetas/New-Display-Events)
+[Source code](https://github.com/kanesbetas/New-Display-Events)
 
 ---
 ## Information
