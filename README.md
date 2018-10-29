@@ -1,2 +1,0 @@
-# homeswitcher
-HomeScreen AppSwitcher

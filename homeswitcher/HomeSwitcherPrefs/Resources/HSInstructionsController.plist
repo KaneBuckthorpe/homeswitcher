@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Instructions</string>
+		</dict>
+		
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Hidden Button - Left</string>
+		</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Tap to Scroll to most recent (Left)</string>
+</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Hold and drag to move the switcher</string>
+</dict>
+
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Hidden Button - Right</string>
+		</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Tap to Scroll to least recent (Right)</string>
+</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Hold and drag to move the switcher</string>
+</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Hidden Button - center (below central icon)</string>
+		</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Tap to Scroll to center</string>
+</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Hold and drag to move the switcher</string>
+</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Appcards -Horizontal Mode</string>
+		</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Swipe up to close app </string>
+</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Swipe down to open App</string>
+</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Appcards -Vertical Mode</string>
+		</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Swipe left to close app </string>
+</dict>
+
+<dict>
+<key>cell</key>
+<string>PSStaticTextCell</string>
+                    <key>height</key>
+                    <integer>30</integer>
+<key>label</key>
+<string>•Swipe right to open App</string>
+</dict>
+
+	</array>
+	<key>title</key>
+	<string>Instructions</string>
+</dict>
+</plist>

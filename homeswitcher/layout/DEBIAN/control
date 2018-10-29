@@ -1,0 +1,9 @@
+Package: com.indieDev.homeSwitcher
+Name: HomeSwitcher
+Depends: mobilesubstrate
+Version: 2.2.7
+Architecture: iphoneos-arm
+Description: Alternative SystemWide App Switcher
+Maintainer: indieDev
+Author: indieDevKB
+Section: Tweaks
