@@ -15,11 +15,11 @@ This tweak is on sale for $2 via the [Packix Repo](https://repo.packix.com/packa
 
 To show and hide HomeSwitcher between apps, Homescreen, Lockscreen and AppSwitcher:
 
-### Get activator
+### Get activator:
 
 [Repo](http://rpetri.ch/reposetup)
 
-### Get New Display Events
+### Get New Display Events:
 
 [Repo](https://repo.packix.com/package/com.kanebuckthorpe.newdisplayevents)
 
