@@ -35,7 +35,7 @@ Later projects demonstrate various other solutions to filtering arrays and proce
 
 ---
 ## License 
-This software is licensed under the BSD 4 License, detailed in the file [LICENSE.md](https://github.com/kanesbetas/homeswitcher/LICENSE.md)
+This software is licensed under the BSD 4 License, detailed in the file [LICENSE.md](https://github.com/kanesbetas/blob/master/LICENSE.md)
 if you wish to use this code in your project then in addition to the License agreement you must also provie a link to my website https://kanebuckthorpe.co.uk. if for any reason you do not wish to include my website in your project, then please contact me so we can discuss another agreement.
 Please dont steel my code! if you like to use it, then go ahead. Just be sure to provide proper credit.
 
