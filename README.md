@@ -15,13 +15,15 @@ This tweak is on sale for $2 via the [Packix Repo](https://repo.packix.com/packa
 
 To show and hide HomeSwitcher between apps, Homescreen, Lockscreen and AppSwitcher:
 
-Get activator
+### Get activator:
 
-http://rpetri.ch/reposetup/
+[Repo](http://rpetri.ch/reposetup)
 
-Get New Display Events
+### Get New Display Events:
 
-https://repo.packix.com/package/com.kanebuckthorpe.newdisplayevents/
+[Repo](https://repo.packix.com/package/com.kanebuckthorpe.newdisplayevents)
+
+[Github](https://github.com/kanesbetas/New-Display-Events)
 
 ---
 ## Information
@@ -31,4 +33,9 @@ This tweak was made entierly using filza's simple text editor on a jailbroken iP
 
 Later projects demonstrate various other solutions to filtering arrays and processing data to improve efficiency.
 
+---
+## License 
+Please dont steel code!
 
+This software is licensed under the BSD 4 License, detailed in the file [LICENSE.md](https://github.com/kanesbetas/homeswitcher/blob/master/LICENSE.md)
+If you do wish to use this code in your project then in addition to the License agreement you must also provie a link to my website https://kanebuckthorpe.co.uk. If for any reason you do not wish to include my website in your project, then please contact me so we can discuss another agreement.
