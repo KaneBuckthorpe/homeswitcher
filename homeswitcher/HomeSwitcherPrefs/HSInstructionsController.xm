@@ -1,7 +1,7 @@
 #include "HSRootListController.h"
 
 @implementation HSInstructionsController
-    
+
 - (NSArray *)specifiers {
     if (!_specifiers) {
         _specifiers =
@@ -21,9 +21,9 @@
     
     self.backgroundColor = [UIColor whiteColor];
 }
-    
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PSTableCell *cell = (PSTableCell *)[super tableView:tableView
                                   cellForRowAtIndexPath:indexPath];
     
@@ -31,7 +31,7 @@
     
     return cell;
 }
-    
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.topItem.backBarButtonItem =
@@ -50,14 +50,14 @@
                                     target:nil
                                     action:nil];
 }
-    
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationController.navigationBar.tintColor =
     [UIColor colorWithRed:1 green:0.17 blue:0.33 alpha:1];
 }
-    
+
 - (id)tableView:(id)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         CGFloat headerHeight = 140;
@@ -81,7 +81,7 @@
         return [super tableView:tableView viewForHeaderInSection:section];
     }
 }
-    
+
 - (CGFloat)tableView:(id)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return 140;
@@ -89,4 +89,4 @@
         return [super tableView:tableView heightForHeaderInSection:section];
     }
 }
-    @end
+@end

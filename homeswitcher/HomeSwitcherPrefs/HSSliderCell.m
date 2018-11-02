@@ -1,10 +1,10 @@
 #import "HSSliderCell.h"
 
 @implementation HSSliderCell
-    
+
 - (id)initWithStyle:(UITableViewCellStyle)style
-    reuseIdentifier:(id)identifier
-          specifier:(PSSpecifier *)specifier {
+reuseIdentifier:(id)identifier
+specifier:(PSSpecifier *)specifier {
     self = [super initWithStyle:style
                 reuseIdentifier:identifier
                       specifier:specifier];
@@ -20,9 +20,9 @@
     }
     return self;
 }
-    
+
 - (void)refreshCellContentsWithSpecifier:(PSSpecifier *)specifier {
     [super refreshCellContentsWithSpecifier:specifier];
 }
-    
-    @end
+
+@end

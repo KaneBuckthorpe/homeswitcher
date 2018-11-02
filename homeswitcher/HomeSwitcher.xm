@@ -5,7 +5,7 @@ int iOSVersion;
 @interface SBLockScreenManager : NSObject
 + (id)sharedInstance;
 - (BOOL)isLockScreenVisible;
-    @end
+@end
 
 % hook SBIconScrollView - (void)layoutSubviews {
     % orig;
@@ -60,10 +60,10 @@ int iOSVersion;
 % end
 
 @implementation HSActivator
-    
+
 - (void)activator:(LAActivator *)activator
-     receiveEvent:(LAEvent *)event
-  forListenerName:(NSString *)listenerName {
+receiveEvent:(LAEvent *)event
+forListenerName:(NSString *)listenerName {
     if (homeSwitcher.activatorGesturesEnabled) {
         if ([listenerName isEqualToString:@"com.indiedevkb.hideSwitcher"]) {
             
@@ -91,7 +91,7 @@ int iOSVersion;
     [activator registerListener:[self new]
                         forName:@"com.indiedevkb.toggleSwitcher"];
 }
-    @end
+@end
 
 % hook SBUIController - (void)_deviceUILocked {
     % orig;

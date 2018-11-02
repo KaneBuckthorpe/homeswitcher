@@ -9,80 +9,80 @@
 #import <objc/runtime.h>
 
 @interface LSApplicationProxy
-    @property(nonatomic, readonly) NSURL *dataContainerURL;
-    @property(nonatomic, copy, readonly) NSString *localizedName;
-    
+@property(nonatomic, readonly) NSURL *dataContainerURL;
+@property(nonatomic, copy, readonly) NSString *localizedName;
+
 + (instancetype)applicationProxyForIdentifier:(NSString *)identifier;
-    @end
+@end
 
 @interface LSApplicationWorkspace : NSObject
 + (id)defaultWorkspace;
 - (BOOL)openApplicationWithBundleID:(NSString *)bundleID;
-    @end
+@end
 
 @interface SpringBoard : UIApplication
 - (id)_accessibilityTopDisplay;
 - (BOOL)isShowingHomescreen;
-    
-    @end
+
+@end
 
 @interface UIApplication (HS)
 + (id)sharedApplication;
 - (BOOL)launchApplicationWithIdentifier:(id)arg1 suspended:(BOOL)arg2;
-    @end
+@end
 
 @interface SBRootFolderController : SBFolderController
-    @end
+@end
 
 @interface SBRecentAppLayouts : NSObject
 + (id)sharedInstance;
 - (id)_recentsFromPrefs;
 - (void)remove:(id)arg1;
-    @end
+@end
 
 @interface SBDisplayItem : NSObject <NSCopying>
-    @property(nonatomic, copy, readonly) NSString *displayIdentifier;
-    @end
+@property(nonatomic, copy, readonly) NSString *displayIdentifier;
+@end
 
 @interface SBUIController : NSObject
 + (id)sharedInstance;
 - (void)clickedMenuButton;
 - (void)activateApplication:(id)arg1;
 - (BOOL)isAppSwitcherShowing;
-    @end
+@end
 
 @interface SBFluidSwitcherViewController : UIViewController
 - (void)killAppLayoutOfContainer:(id)arg1
-                    withVelocity:(double)arg2
-                       forReason:(long long)arg3;
-    @property NSArray *appLayouts;
-    @end
+withVelocity:(double)arg2
+forReason:(long long)arg3;
+@property NSArray *appLayouts;
+@end
 
 @interface SBAppSwitcherModel : SBFluidSwitcherViewController
 + (id)sharedInstance;
 - (id)_recentsFromPrefs;
 - (void)remove:(id)arg1;
-    @end
+@end
 
 @interface SBAppLayout : NSObject <NSCopying>
 - (id)allItems;
 - (id)initWithItemsForLayoutRoles:(id)arg1 configuration:(long long)arg2;
-    @end
+@end
 
 @interface UIImage (IndieDev)
 + (UIImage *)_applicationIconImageForBundleIdentifier:
 (NSString *)bundleIdentifier
-                                               format:(int)format
-                                                scale:(CGFloat)scale;
-    @end
+format:(int)format
+scale:(CGFloat)scale;
+@end
 
 @interface SBApplicationProcessState : NSObject
-    @property(nonatomic, readonly) int pid;
+@property(nonatomic, readonly) int pid;
 - (int)pid;
-    @end
+@end
 
 @interface SBApplication : NSObject
-    @property(nonatomic, readonly) SBApplicationProcessState *processState;
+@property(nonatomic, readonly) SBApplicationProcessState *processState;
 - (int)pid;
 - (id)bundleIdentifier;
-    @end
+@end

@@ -8,12 +8,12 @@
     BOOL deletingApp;
     BOOL openingApp;
 }
-    @property(nonatomic, retain) UIView *zoomView;
-    @property(nonatomic, retain) UIVisualEffectView *blurView;
-    @property(nonatomic, retain) UIView *overlay;
-    @property(nonatomic, strong) UIImageView *appImageView;
-    @property(nonatomic, retain) UIImageView *iconImageView;
-    @property(nonatomic, retain) UILabel *appNameLabel;
-    @property(nonatomic, assign) NSString *bundleID;
-    @property(nonatomic, assign) NSIndexPath *indexPath;
-    @end
+@property(nonatomic, retain) UIView *zoomView;
+@property(nonatomic, retain) UIVisualEffectView *blurView;
+@property(nonatomic, retain) UIView *overlay;
+@property(nonatomic, strong) UIImageView *appImageView;
+@property(nonatomic, retain) UIImageView *iconImageView;
+@property(nonatomic, retain) UILabel *appNameLabel;
+@property(nonatomic, assign) NSString *bundleID;
+@property(nonatomic, assign) NSIndexPath *indexPath;
+@end

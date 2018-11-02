@@ -4,11 +4,11 @@
 @protocol PreferencesTableCustomView
 - (id)initWithSpecifier:(PSSpecifier *)specifier;
 - (CGFloat)preferredHeightForWidth:(CGFloat)width;
-    @end
+@end
 
 @interface KBButtonCell : PSTableCell <PreferencesTableCustomView> {
     NSString *platform;
     UIImageView *logoView;
     UIImage *logo;
 }
-    @end
+@end

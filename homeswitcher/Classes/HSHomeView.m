@@ -10,7 +10,7 @@
     
     return self;
 }
-    
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     for (UIView *subview in self.subviews) {
         if ([subview hitTest:[self convertPoint:point toView:subview]
@@ -20,4 +20,4 @@
     }
     return NO;
 }
-    @end
+@end

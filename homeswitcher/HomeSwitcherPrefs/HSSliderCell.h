@@ -3,11 +3,11 @@
 #import <Preferences/PSSpecifier.h>
 #import <objc/runtime.h>
 @interface HSSliderCell : PSSliderTableCell
-    @end
+@end
 
 @interface UISpecifierSlider : UISlider {
     id userData;
 }
-    
-    @property(nonatomic, readwrite, retain) id userData;
-    @end
+
+@property(nonatomic, readwrite, retain) id userData;
+@end

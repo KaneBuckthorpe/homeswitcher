@@ -2,9 +2,9 @@
 #import "KBAppListCell.h"
 
 @implementation KBAppList
-    NSUserDefaults *preferences;
-    UIBarButtonItem *saveButton;
-    UIButton *toggleAllButton;
+NSUserDefaults *preferences;
+UIBarButtonItem *saveButton;
+UIButton *toggleAllButton;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Apps To Blur";
@@ -52,25 +52,25 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 }
-    
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
 }
-    
+
 - (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
+numberOfRowsInSection:(NSInteger)section {
     
     return [self.installedApps count];
 }
-    
+
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
 }
-    
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KBAppListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL"];
     if (cell == nil) {
         cell = [[KBAppListCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -100,7 +100,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     }
     return cell;
 }
-    
+
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     saveButton.tintColor = [UIColor colorWithRed:1
@@ -130,7 +130,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     }
     [tableView reloadData];
 }
-    
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     preferences =
@@ -229,13 +229,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                                     target:nil
                                     action:nil];
 }
-    
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.navigationController.navigationController.navigationBar.tintColor =
     [UIColor colorWithRed:1 green:0.17 blue:0.33 alpha:1];
 }
-    
+
 - (void)toggleAllPressed {
     saveButton.tintColor = [UIColor colorWithRed:1
                                            green:0.17
@@ -261,7 +261,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         [self.tableView reloadData];
     }
 }
-    
+
 - (void)save {
     [preferences setObject:self.selectedApps forKey:@"selectedApps"];
     [preferences synchronize];
@@ -273,4 +273,4 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     saveButton.tintColor = UIColor.blackColor;
 }
-    @end
+@end

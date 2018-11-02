@@ -5,41 +5,41 @@
 #import <spawn.h>
 
 @interface HSRootListController : PSListController
-    @end
+@end
 
 @interface HSInstructionsController : PSListController
-    @end
+@end
 
 @interface UIImage (IndieDev)
 + (UIImage *)_applicationIconImageForBundleIdentifier:
 (NSString *)bundleIdentifier
-                                               format:(int)format
-                                                scale:(CGFloat)scale;
-    @end
+format:(int)format
+scale:(CGFloat)scale;
+@end
 
 @interface KBAppList
-    : PSViewController <UITableViewDataSource, UITableViewDelegate>
-    @property(nonatomic, strong) UITableView *tableView;
-    @property(nonatomic, strong) NSArray *installedApps;
-    @property(nonatomic, strong) NSMutableArray *selectedApps;
-    @property(nonatomic, strong) NSArray *installedAppsBundleID;
-    @property(nonatomic, assign) BOOL allSelected;
-    @end
+: PSViewController <UITableViewDataSource, UITableViewDelegate>
+@property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong) NSArray *installedApps;
+@property(nonatomic, strong) NSMutableArray *selectedApps;
+@property(nonatomic, strong) NSArray *installedAppsBundleID;
+@property(nonatomic, assign) BOOL allSelected;
+@end
 
 @interface LSBundleProxy : NSObject
-    @property(nonatomic, readonly) NSString *bundleIdentifier;
+@property(nonatomic, readonly) NSString *bundleIdentifier;
 - (id)localizedName;
-    @end
+@end
 
 @interface LSApplicationProxy : LSBundleProxy
-    @property(nonatomic, readonly) NSURL *dataContainerURL;
-    @property(nonatomic, copy, readonly) NSString *localizedName;
-    
+@property(nonatomic, readonly) NSURL *dataContainerURL;
+@property(nonatomic, copy, readonly) NSString *localizedName;
+
 + (instancetype)applicationProxyForIdentifier:(NSString *)identifier;
-    @end
+@end
 
 @interface LSApplicationWorkspace : NSObject
 + (id)defaultWorkspace;
 - (BOOL)openApplicationWithBundleID:(NSString *)bundleID;
 - (id)allInstalledApplications;
-    @end
+@end

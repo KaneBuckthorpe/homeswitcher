@@ -7,7 +7,7 @@
                 reuseIdentifier:@"KBButtonCell"
                       specifier:specifier];
 }
-    
+
 - (void)layoutSubviews {
     
     CGRect logoFrame;
@@ -55,11 +55,11 @@
                                                    alpha:1];
     }
 }
-    /// Doesn't work but kept in anyway
+/// Doesn't work but kept in anyway
 - (CGFloat)preferredHeightForWidth:(CGFloat)arg1 {
     return 100;
 }
-    
+
 - (void)refreshCellContentsWithSpecifier:(PSSpecifier *)specifier {
     [super refreshCellContentsWithSpecifier:specifier];
     platform = [[specifier propertyForKey:@"platform"] lowercaseString];
@@ -74,5 +74,5 @@ compatibleWithTraitCollection:nil];
     
     [self layoutSubviews];
 }
-    
-    @end
+
+@end

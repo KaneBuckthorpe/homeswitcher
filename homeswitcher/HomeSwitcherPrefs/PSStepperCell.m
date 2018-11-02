@@ -1,12 +1,12 @@
 #import "PSStepperCell.h"
 
 @implementation PSStepperCell
-    
-    @dynamic control;
-    
+
+@dynamic control;
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
-              reuseIdentifier:(NSString *)reuseIdentifier
-                    specifier:(PSSpecifier *)specifier {
+reuseIdentifier:(NSString *)reuseIdentifier
+specifier:(PSSpecifier *)specifier {
     if (self = [super initWithStyle:style
                     reuseIdentifier:reuseIdentifier
                           specifier:specifier]) {
@@ -39,7 +39,7 @@
                                     0, 100, self.frame.size.height);
     self.textLabel.frame = numberFrame;
 }
-    
+
 - (void)refreshCellContentsWithSpecifier:(PSSpecifier *)specifier {
     [super refreshCellContentsWithSpecifier:specifier];
     title = [specifier propertyForKey:@"label"];
@@ -48,7 +48,7 @@
     self.detailTextLabel.text = title;
     self.textLabel.textColor = [UIColor redColor];
 }
-    
+
 - (UIStepper *)newControl {
     UIStepper *stepper = [[UIStepper alloc] initWithFrame:CGRectZero];
     
@@ -59,21 +59,21 @@
     /// stepper.minimumValue = 0;
     return stepper;
 }
-    
+
 - (NSNumber *)controlValue {
     return @(self.control.value);
 }
-    
+
 - (void)setValue:(NSNumber *)value {
     [super setValue:value];
     self.control.value = value.doubleValue;
 }
-    
+
 - (void)controlChanged:(UIStepper *)stepper {
     [super controlChanged:stepper];
     [self _updateLabel];
 }
-    
+
 - (void)_updateLabel {
     if (!self.control) {
         return;
@@ -84,5 +84,5 @@
     self.textLabel.text = [NSString stringWithFormat:@"%.0f%%", value];
     [self setNeedsLayout];
 }
-    
-    @end
+
+@end

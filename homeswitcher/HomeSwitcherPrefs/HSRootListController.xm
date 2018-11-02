@@ -6,7 +6,7 @@ static NSUserDefaults *preferences =
 [[NSUserDefaults alloc] initWithSuiteName:@"com.kaneb.HomeSwitcher"];
 
 @implementation HSRootListController
-    
+
 - (NSArray *)specifiers {
     if (!_specifiers) {
         _specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
@@ -14,7 +14,7 @@ static NSUserDefaults *preferences =
     
     return _specifiers;
 }
-    
+
 - (void)loadView {
     [super loadView];
     
@@ -29,9 +29,9 @@ static NSUserDefaults *preferences =
                                                alpha:1];
     [self.navigationItem setRightBarButtonItem:respringButton];
 }
-    
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = (PSTableCell *)[super tableView:tableView
                                       cellForRowAtIndexPath:indexPath];
@@ -66,7 +66,7 @@ static NSUserDefaults *preferences =
     
     return cell;
 }
-    
+
 - (void)sliderMoved:(UISlider *)slider {
     
     UITableViewCell *textCell =
@@ -75,7 +75,7 @@ static NSUserDefaults *preferences =
     [NSString stringWithFormat:@"%.0lf", slider.value];
     NSLog(@"textCell: %@", textCell);
 }
-    
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -99,7 +99,7 @@ static NSUserDefaults *preferences =
      appearanceWhenContainedInInstancesOfClasses:@ [[self.class class]]]
     .tintColor = [UIColor blackColor];
 }
-    
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
@@ -110,7 +110,7 @@ static NSUserDefaults *preferences =
     self.navigationController.navigationController.navigationBar.tintColor =
     [UIColor colorWithRed:1 green:0.17 blue:0.33 alpha:1];
 }
-    
+
 - (id)tableView:(id)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         CGFloat headerHeight = 140;
@@ -133,7 +133,7 @@ static NSUserDefaults *preferences =
         return [super tableView:tableView viewForHeaderInSection:section];
     }
 }
-    
+
 - (CGFloat)tableView:(id)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return 140;
@@ -141,7 +141,7 @@ static NSUserDefaults *preferences =
         return [super tableView:tableView heightForHeaderInSection:section];
     }
 }
-    
+
 - (void)respring {
     pid_t pid;
     int status;
@@ -150,7 +150,7 @@ static NSUserDefaults *preferences =
                 NULL);
     waitpid(pid, &status, WEXITED);
 }
-    
+
 - (void)showOrHide {
     CFNotificationCenterRef r = CFNotificationCenterGetDarwinNotifyCenter();
     CFNotificationCenterPostNotification(
@@ -165,4 +165,4 @@ static NSUserDefaults *preferences =
     NSURL *url = [NSURL URLWithString:@"https://paypal.me/kanebuckthorpe"];
     [[UIApplication sharedApplication] openURL:url];
 }
-    @end
+@end

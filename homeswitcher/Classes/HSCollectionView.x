@@ -1,26 +1,26 @@
 #import "HSCollectionView.h"
 
 @implementation HSCollectionView
-    static NSUserDefaults *preferences;
-    int targetCellIndex;
-    int iOS;
-    
-    static float viewAreaWidth;
-    static float viewAreaHeight;
-    
-    UICollectionViewFlowLayout *layout;
-    static float appcardSizePercentage;
-    static float shadowRadius;
-    BOOL freeFlowScrolling;
-    
-    float cellWidth;
-    float imageViewSize;
-    float iconSize;
-    float cellHeight;
-    float scrollStartPoint;
-    float pageStartInset;
-    CGRect switcherFrame;
-    
+static NSUserDefaults *preferences;
+int targetCellIndex;
+int iOS;
+
+static float viewAreaWidth;
+static float viewAreaHeight;
+
+UICollectionViewFlowLayout *layout;
+static float appcardSizePercentage;
+static float shadowRadius;
+BOOL freeFlowScrolling;
+
+float cellWidth;
+float imageViewSize;
+float iconSize;
+float cellHeight;
+float scrollStartPoint;
+float pageStartInset;
+CGRect switcherFrame;
+
 - (id)init {
     if (kCFCoreFoundationVersionNumber >= 1443.00) {
         iOS = 11;
@@ -78,26 +78,26 @@
     }
     return self;
 }
-    
+
 - (void)loadPrefs {
     preferences =
     [[NSUserDefaults alloc] initWithSuiteName:@"com.kaneb.HomeSwitcher"];
     
     [preferences registerDefaults:@{
-                                    @"shadowRadius" : [NSNumber numberWithFloat:50],
-                                    
-                                    }];
+     @"shadowRadius" : [NSNumber numberWithFloat:50],
+     
+     }];
     
     [preferences registerDefaults:@{
-                                    @"appcardSize" : [NSNumber numberWithFloat:30],
-                                    
-                                    }];
+     @"appcardSize" : [NSNumber numberWithFloat:30],
+     
+     }];
     [preferences registerDefaults:@{
-                                    @"freeFlowScrolling" : @YES,
-                                    }];
+     @"freeFlowScrolling" : @YES,
+     }];
     [preferences registerDefaults:@{
-                                    @"verticalMode" : @NO,
-                                    }];
+     @"verticalMode" : @NO,
+     }];
     
     self.blurAppsList = [preferences objectForKey:@"selectedApps"];
     
@@ -109,7 +109,7 @@
     
     self.verticalMode = [preferences boolForKey:@"verticalMode"];
 }
-    
+
 - (void)layoutViews {
     
     viewAreaWidth = [[UIScreen mainScreen] bounds].size.width;
@@ -136,7 +136,7 @@
     }
     self.frame = switcherFrame;
 }
-    
+
 - (void)reloadSwitcher {
     NSMutableArray *holding = [NSMutableArray new];
     
@@ -192,19 +192,19 @@
                               delay:0
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
-                             [self reloadData];
-                             [self layoutIfNeeded];
-                             [self updateCellsLayout];
-                         }
+         [self reloadData];
+         [self layoutIfNeeded];
+         [self updateCellsLayout];
+         }
                          completion:^(BOOL finished) {
-                             [UIView animateWithDuration:0.3
-                                                   delay:0
-                                                 options:UIViewAnimationOptionCurveEaseInOut
-                                              animations:^{
-                                                  [self updateCellsLayout];
-                                              }
-                                              completion:nil];
-                         }];
+         [UIView animateWithDuration:0.3
+                               delay:0
+                             options:UIViewAnimationOptionCurveEaseInOut
+                          animations:^{
+          [self updateCellsLayout];
+          }
+                          completion:nil];
+         }];
     }
 }
 - (UIImage *)squareImageFromImage:(UIImage *)image {
@@ -213,7 +213,7 @@
                                                          image.CGImage, CGRectMake(0, 0, image.size.width,
                                                                                    image.size.width))];
 }
-    
+
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
@@ -226,9 +226,9 @@
     
     return 1;
 }
-    
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section {
+numberOfItemsInSection:(NSInteger)section {
     int count = self.switcherItems.count;
     
     if (count > 0) {
@@ -237,7 +237,7 @@
         return 1;
     }
 }
-    /////https://stackoverflow.com/a/29266983
+/////https://stackoverflow.com/a/29266983
 - (NSArray *)mainColoursInImage:(UIImage *)image detail:(int)detail {
     
     // 1. determine detail vars (0==low,1==default,2==high)
@@ -377,7 +377,7 @@
     // sort keys highest occurrence to lowest
     NSArray *orderedKeys = [colourCounter
                             keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                                return [obj2 compare:obj1];
+                            return [obj2 compare:obj1];
                             }];
     
     // checks if the colour is similar to another one already included
@@ -427,7 +427,7 @@
     return colourArray;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HSAppCardCell *cell;
     
     cell =
@@ -548,23 +548,23 @@
     
     return cell;
 }
-    
+
 - (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+layout:(UICollectionViewLayout *)collectionViewLayout
+sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(cellWidth, cellHeight);
 }
-    
+
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                        layout:(UICollectionViewLayout *)collectionViewLayout
-        insetForSectionAtIndex:(NSInteger)section {
+layout:(UICollectionViewLayout *)collectionViewLayout
+insetForSectionAtIndex:(NSInteger)section {
     if (self.verticalMode) {
         return UIEdgeInsetsMake(pageStartInset, 0, pageStartInset, 0);
     } else {
         return UIEdgeInsetsMake(0, pageStartInset, 0, pageStartInset);
     }
 }
-    
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     float currentOffset;
     if (self.verticalMode) {
@@ -585,41 +585,41 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         [self scrollToStart];
-                     }
+     [self scrollToStart];
+     }
                      completion:^(BOOL finished) {
-                         [UIView animateWithDuration:0.5
-                                               delay:0
-                                             options:UIViewAnimationOptionCurveEaseInOut
-                                          animations:^{
-                                              [self updateCellsLayout];
-                                          }
-                                          completion:nil];
-                     }];
+     [UIView animateWithDuration:0.5
+                           delay:0
+                         options:UIViewAnimationOptionCurveEaseInOut
+                      animations:^{
+      [self updateCellsLayout];
+      }
+                      completion:nil];
+     }];
 }
 - (void)scrollToStart {
     
     [self setContentOffset:CGPointMake(0, 0) animated:NO];
 }
-    
+
 - (void)scrollToCenterAnimated {
     [UIView animateWithDuration:0.8
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         [self scrollToCenter];
-                     }
+     [self scrollToCenter];
+     }
                      completion:^(BOOL finished) {
-                         [UIView animateWithDuration:0.5
-                                               delay:0
-                                             options:UIViewAnimationOptionCurveEaseInOut
-                                          animations:^{
-                                              [self updateCellsLayout];
-                                          }
-                                          completion:nil];
-                     }];
+     [UIView animateWithDuration:0.5
+                           delay:0
+                         options:UIViewAnimationOptionCurveEaseInOut
+                      animations:^{
+      [self updateCellsLayout];
+      }
+                      completion:nil];
+     }];
 }
-    
+
 - (void)scrollToCenter {
     
     if ([self.switcherItems count] == 1) {
@@ -644,26 +644,26 @@
         }
     }
 }
-    
+
 - (void)scrollToEndAnimated {
     [UIView animateWithDuration:0.5
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         [self scrollToEnd];
-                         [self updateCellsLayout];
-                     }
+     [self scrollToEnd];
+     [self updateCellsLayout];
+     }
                      completion:^(BOOL finished) {
-                         [UIView animateWithDuration:0.5
-                                               delay:0
-                                             options:UIViewAnimationOptionCurveEaseInOut
-                                          animations:^{
-                                              [self updateCellsLayout];
-                                          }
-                                          completion:nil];
-                     }];
+     [UIView animateWithDuration:0.5
+                           delay:0
+                         options:UIViewAnimationOptionCurveEaseInOut
+                      animations:^{
+      [self updateCellsLayout];
+      }
+                      completion:nil];
+     }];
 }
-    
+
 - (void)scrollToEnd {
     
     if (self.verticalMode) {
@@ -712,10 +712,10 @@
         }
     }
 }
-    
+
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-                     withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset {
+withVelocity:(CGPoint)velocity
+targetContentOffset:(inout CGPoint *)targetContentOffset {
     if (!freeFlowScrolling) {
         
         if (self.verticalMode) {
@@ -770,7 +770,7 @@
         }
     }
 }
-    
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (!freeFlowScrolling) {
         [self
@@ -781,7 +781,7 @@
          animated:YES];
     }
 }
-    
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     
     for (UIView *subview in self.subviews) {
@@ -792,5 +792,5 @@
     }
     return NO;
 }
-    
-    @end
+
+@end

@@ -3,5 +3,5 @@
 @interface PSStepperCell : PSControlTableCell {
     NSString *title;
 }
-    @property(nonatomic, retain) UIStepper *control;
-    @end
+@property(nonatomic, retain) UIStepper *control;
+@end

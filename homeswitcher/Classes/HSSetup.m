@@ -3,21 +3,21 @@
 static NSUserDefaults *preferences;
 
 @implementation HSSetup
-    
-    UIView *rightArrow;
-    int endTag = 3003;
-    UIView *centerButton;
-    int centerTag = 2002;
-    UIView *leftArrow;
-    int startTag = 1001;
-    
-    CGPoint switcherCenter;
-    CGPoint lastPoint;
-    CGPoint panPoint;
-    CGPoint leftButtonCenter;
-    CGPoint rightButtonCenter;
-    CGPoint centerButtonCenter;
-    
+
+UIView *rightArrow;
+int endTag = 3003;
+UIView *centerButton;
+int centerTag = 2002;
+UIView *leftArrow;
+int startTag = 1001;
+
+CGPoint switcherCenter;
+CGPoint lastPoint;
+CGPoint panPoint;
+CGPoint leftButtonCenter;
+CGPoint rightButtonCenter;
+CGPoint centerButtonCenter;
+
 - (void)initWithPrefs {
     
     int regToken;
@@ -46,8 +46,8 @@ static NSUserDefaults *preferences;
     [self loadGestureViews];
     [self.switcherView reloadAndScroll];
 }
-    
-    // load the current Prefs
+
+// load the current Prefs
 - (void)loadPrefs {
     preferences =
     [[NSUserDefaults alloc] initWithSuiteName:@"com.kaneb.HomeSwitcher"];
@@ -55,21 +55,21 @@ static NSUserDefaults *preferences;
     BOOL overlapStatusBar;
     
     [preferences registerDefaults:@{
-                                    @"alwaysOnHomescreen" : @YES,
-                                    }];
+     @"alwaysOnHomescreen" : @YES,
+     }];
     
     [preferences registerDefaults:@{
-                                    @"activatorGesturesEnabled" : @YES,
-                                    }];
+     @"activatorGesturesEnabled" : @YES,
+     }];
     [preferences registerDefaults:@{
-                                    @"overlapStatusBar" : @NO,
-                                    }];
+     @"overlapStatusBar" : @NO,
+     }];
     [preferences registerDefaults:@{
-                                    @"gestureViewThickness" : [NSNumber numberWithFloat:20],
-                                    }];
+     @"gestureViewThickness" : [NSNumber numberWithFloat:20],
+     }];
     [preferences registerDefaults:@{
-                                    @"pageSliderNumber" : [NSNumber numberWithInteger:1],
-                                    }];
+     @"pageSliderNumber" : [NSNumber numberWithInteger:1],
+     }];
     
     self.alwaysOnHomescreen = [preferences boolForKey:@"alwaysOnHomescreen"];
     
@@ -170,7 +170,7 @@ static NSUserDefaults *preferences;
     
     [self.homeView addSubview:self.switcherView];
 }
-    
+
 - (void)loadGestureViews {
     if (rightArrow) {
         [rightArrow removeFromSuperview];
@@ -277,7 +277,7 @@ static NSUserDefaults *preferences;
     [self.homeView addSubview:centerButton];
     [self.homeView addSubview:leftArrow];
 }
-    
+
 - (void)scrollToPosition:(UITapGestureRecognizer *)gesture {
     
     if (gesture.view.tag == startTag) {
@@ -345,16 +345,16 @@ static NSUserDefaults *preferences;
         pan.view.backgroundColor = UIColor.clearColor;
     }
 }
-    
-    ////// show, hide & show/hide methods
-    
+
+////// show, hide & show/hide methods
+
 - (void)showSwitcher {
     [self.switcherWindow addSubview:self.homeView];
     self.isInWindow = YES;
     self.homeView.frame = self.switcherWindow.frame;
     [self.switcherView reloadAndScroll];
 }
-    
+
 - (void)hideSwitcher {
     self.isInWindow = NO;
     
@@ -400,4 +400,4 @@ shouldBeRequiredToFailByGestureRecognizer:
             return NO;
         }
 }
-    @end
+@end
