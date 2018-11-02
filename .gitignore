@@ -4,3 +4,4 @@
 ./obj
 ./Makefile
 ./theos
+.DS_Store
