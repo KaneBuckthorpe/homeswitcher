@@ -7,8 +7,8 @@ int iOSVersion;
 - (BOOL)isLockScreenVisible;
 @end
 
-% hook SBIconScrollView - (void)layoutSubviews {
-    % orig;
+%hook SBIconScrollView - (void)layoutSubviews {
+    %orig;
     if (kCFCoreFoundationVersionNumber >= 1443.00) {
         iOSVersion = 11;
     } else {
@@ -21,11 +21,11 @@ int iOSVersion;
         homeSwitcher.topViewSB = self;
     }
 }
-% end
+%end
 
-% hook SpringBoard -
+%hook SpringBoard -
 (void)applicationDidFinishLaunching : (id)application {
-    % orig;
+    %orig;
     if (kCFCoreFoundationVersionNumber >= 1443.00) {
         iOSVersion = 11;
     } else {
@@ -38,7 +38,7 @@ int iOSVersion;
     }
 }
 - (void)frontDisplayDidChange:(id)newDisplay {
-    % orig(newDisplay);
+    %orig(newDisplay);
     
     if (newDisplay == nil &&
         ![[% c(SBUIController) sharedInstance] isAppSwitcherShowing] &&
@@ -57,7 +57,7 @@ int iOSVersion;
                    [homeSwitcher.switcherView reloadSwitcher];
                }
 }
-% end
+%end
 
 @implementation HSActivator
 
@@ -93,8 +93,8 @@ forListenerName:(NSString *)listenerName {
 }
 @end
 
-% hook SBUIController - (void)_deviceUILocked {
-    % orig;
+%hook SBUIController - (void)_deviceUILocked {
+    %orig;
     [homeSwitcher hideSwitcher];
 }
-% end
+%end
