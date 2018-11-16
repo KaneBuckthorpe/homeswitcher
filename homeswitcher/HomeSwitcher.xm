@@ -7,7 +7,8 @@ int iOSVersion;
 - (BOOL)isLockScreenVisible;
 @end
 
-%hook SBIconScrollView - (void)layoutSubviews {
+%hook SBIconScrollView 
+- (void)layoutSubviews {
     %orig;
     if (kCFCoreFoundationVersionNumber >= 1443.00) {
         iOSVersion = 11;
@@ -23,8 +24,8 @@ int iOSVersion;
 }
 %end
 
-%hook SpringBoard -
-(void)applicationDidFinishLaunching : (id)application {
+%hook SpringBoard 
+-(void)applicationDidFinishLaunching : (id)application {
     %orig;
     if (kCFCoreFoundationVersionNumber >= 1443.00) {
         iOSVersion = 11;
