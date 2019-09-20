@@ -142,7 +142,7 @@ CGRect switcherFrame;
     
     if (iOS == 11) {
         SBRecentAppLayouts *recentLayouts =
-        [% c(SBRecentAppLayouts) sharedInstance];
+        [%c(SBRecentAppLayouts) sharedInstance];
         NSMutableArray *recentAppLayouts = [NSMutableArray new];
         recentAppLayouts = [recentLayouts _recentsFromPrefs];
         for (SBAppLayout *appLayout in recentAppLayouts) {
@@ -150,7 +150,7 @@ CGRect switcherFrame;
         }
     } else {
         SBAppSwitcherModel *switcherModel =
-        [% c(SBAppSwitcherModel) sharedInstance];
+        [%c(SBAppSwitcherModel) sharedInstance];
         holding = [switcherModel _recentsFromPrefs];
     }
     
@@ -170,7 +170,7 @@ CGRect switcherFrame;
     
     if (iOS == 11) {
         SBRecentAppLayouts *recentLayouts =
-        [% c(SBRecentAppLayouts) sharedInstance];
+        [%c(SBRecentAppLayouts) sharedInstance];
         NSMutableArray *recentAppLayouts = [NSMutableArray new];
         recentAppLayouts = [recentLayouts _recentsFromPrefs];
         for (SBAppLayout *appLayout in recentAppLayouts) {
@@ -178,7 +178,7 @@ CGRect switcherFrame;
         }
     } else {
         SBAppSwitcherModel *switcherModel =
-        [% c(SBAppSwitcherModel) sharedInstance];
+        [%c(SBAppSwitcherModel) sharedInstance];
         holding = [switcherModel _recentsFromPrefs];
     }
     
@@ -461,7 +461,7 @@ cellForItemAtIndexPath:(NSIndexPath *)indexPath {
         }
         
         LSApplicationProxy *appProxy =
-        [% c(LSApplicationProxy) applicationProxyForIdentifier:bundleID];
+        [%c(LSApplicationProxy) applicationProxyForIdentifier:bundleID];
         
         cell.iconImageView.image = [UIImage
                                     _applicationIconImageForBundleIdentifier:bundleID

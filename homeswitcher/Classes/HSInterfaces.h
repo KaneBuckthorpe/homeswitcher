@@ -1,4 +1,3 @@
-#import "WPSAlertController.h"
 #import <Foundation/Foundation.h>
 #import <SpringBoard/SBApplicationController.h>
 #import <SpringBoard/SBFolderController.h>

@@ -215,7 +215,7 @@ static NSUserDefaults *preferences;
                    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
                        NSLog(@"opening app");
                        
-                       [[% c(LSApplicationWorkspace) defaultWorkspace]
+                       [[%c(LSApplicationWorkspace) defaultWorkspace]
                         openApplicationWithBundleID:self.bundleID];
                    });
 }
@@ -239,7 +239,7 @@ static NSUserDefaults *preferences;
         NSMutableArray *holding = [NSMutableArray new];
         SBDisplayItem *appToClose;
         SBRecentAppLayouts *recentLayouts =
-        [% c(SBRecentAppLayouts) sharedInstance];
+        [%c(SBRecentAppLayouts) sharedInstance];
         NSMutableArray *recentAppLayouts = [recentLayouts _recentsFromPrefs];
         
         for (SBAppLayout *appLayout in recentAppLayouts) {

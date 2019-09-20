@@ -38,7 +38,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CGFloat inset = cell.bounds.size.width * 10;
     
-    if ([cell isKindOfClass: % c(PSTableCell)]) {
+    if ([cell isKindOfClass: %c(PSTableCell)]) {
         PSSpecifier *specifier = ((PSTableCell *)cell).specifier;
         NSString *identifier = specifier.identifier;
         
@@ -57,7 +57,7 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath {
                                                               blue:0.33
                                                              alpha:1];
         }
-        if ([cell isKindOfClass: % c(KBButtonCell)]) {
+        if ([cell isKindOfClass: %c(KBButtonCell)]) {
             cell.separatorInset = UIEdgeInsetsMake(0, inset, 0, 0);
             cell.indentationWidth = -inset;
             cell.indentationLevel = 1;

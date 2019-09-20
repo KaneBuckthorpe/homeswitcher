@@ -7,7 +7,8 @@ int iOSVersion;
 - (BOOL)isLockScreenVisible;
 @end
 
-%hook SBIconScrollView - (void)layoutSubviews {
+%hook SBIconScrollView
+- (void)layoutSubviews {
     %orig;
     if (kCFCoreFoundationVersionNumber >= 1443.00) {
         iOSVersion = 11;
@@ -23,8 +24,8 @@ int iOSVersion;
 }
 %end
 
-%hook SpringBoard -
-(void)applicationDidFinishLaunching : (id)application {
+%hook SpringBoard
+-(void)applicationDidFinishLaunching : (id)application {
     %orig;
     if (kCFCoreFoundationVersionNumber >= 1443.00) {
         iOSVersion = 11;
@@ -41,9 +42,9 @@ int iOSVersion;
     %orig(newDisplay);
     
     if (newDisplay == nil &&
-        ![[% c(SBUIController) sharedInstance] isAppSwitcherShowing] &&
+        ![[%c(SBUIController) sharedInstance] isAppSwitcherShowing] &&
         homeSwitcher.alwaysOnHomescreen &&
-        ![[% c(SBLockScreenManager) sharedInstance] isLockScreenVisible]) {
+        ![[%c(SBLockScreenManager) sharedInstance] isLockScreenVisible]) {
         [homeSwitcher hideSwitcher];
         
     } else if ([homeSwitcher.homeView
@@ -80,7 +81,7 @@ forListenerName:(NSString *)listenerName {
     }
 }
 + (void)load {
-    LAActivator *activator = [% c(LAActivator) sharedInstance];
+    LAActivator *activator = [%c(LAActivator) sharedInstance];
     
     [activator registerListener:[self new]
                         forName:@"com.indiedevkb.showSwitcher"];
@@ -93,7 +94,8 @@ forListenerName:(NSString *)listenerName {
 }
 @end
 
-%hook SBUIController - (void)_deviceUILocked {
+%hook SBUIController
+- (void)_deviceUILocked {
     %orig;
     [homeSwitcher hideSwitcher];
 }
