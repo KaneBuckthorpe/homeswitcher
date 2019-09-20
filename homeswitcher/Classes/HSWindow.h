@@ -1,4 +1,3 @@
 #import <UIKit/UIKit.h>
-
-@interface HSWindow : UIWindow
+@interface HSWindow:UIWindow
 @end

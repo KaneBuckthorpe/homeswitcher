@@ -1,14 +1,14 @@
-#export TARGET = iphone:clang:9.3:9.3
+ARCHS := armv7 armv7s arm64 arm64e
 
 include $(THEOS)/makefiles/common.mk
 
 
 BUNDLE_NAME = HomeSwitcher
-HomeSwitcher_FILES = HSRootListController.xm HSInstructionsController.xm KBAppList.xm PSStepperCell.m HSSliderCell.m KBButtonCell.m KBAppListCell.m
+HomeSwitcher_FILES = HSRootListController.xm HSInstructionsController.xm KBButtonCell.m
 HomeSwitcher_INSTALL_PATH = /Library/PreferenceBundles
 HomeSwitcher_FRAMEWORKS = UIKit CoreGraphics Foundation
-HomeSwitcher_PRIVATE_FRAMEWORKS = Preferences 
-
+HomeSwitcher_PRIVATE_FRAMEWORKS = Preferences
+HomeSwitcher_EXTRA_FRAMEWORKS += KBPreferences KBAppList
 HomeSwitcher_CFLAGS = -fobjc-arc
 
 DEBUG=0

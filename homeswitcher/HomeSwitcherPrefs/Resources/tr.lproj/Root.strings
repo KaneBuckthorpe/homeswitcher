@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ACTIVATOR OPTIONS</key>
+	<string>AKTİVATÖR SEÇENEKLERİ</string>
+	<key>AppCards Size:</key>
+	<string>Uygulama Kartı Boyutu:</string>
+	<key>Can Overlap StatusBar</key>
+	<string>StatusBar ile Örtüşür</string>
+	<key>Choose Apps To Blur</key>
+	<string>Bulanık Uygulamaları Seç</string>
+	<key>Credit to HomeSwitchers Icon Designer @Degrager_Dev</key>
+	<string>HomeSwitchers ikon  Dizaynı @Degrager_Dev</string>
+	<key>Enable Activator Gestures</key>
+	<string>Hareketleri Etkinleştir</string>
+	<key>Enable Free Flow Scrolling </key>
+	<string>Serbest Akış Kaydırma</string>
+	<key>Enable Moving Of Switcher</key>
+	<string>Switcher’da Taşınmayı Etkinleştir</string>
+	<key>Enable Vertical Mode</key>
+	<string>Dikey Modu Etkinleştir</string>
+	<key>Hidden Views Thickness</key>
+	<string>Kalınlık:</string>
+	<key>Hide HomeSwitcher</key>
+	<string>HomeSwitcher Gizle</string>
+	<key>Instructions - Please Read</key>
+	<string>Talimatlar - Lütfen Okuyunuz</string>
+	<key>OPTIONS</key>
+	<string>SEÇENEKLER</string>
+	<key>Requires Activator To Be Installed</key>
+	<string>Aktivatör Yüklü Olması Gerekir</string>
+	<key>See Your Changes Happen!!!</key>
+	<string>Değişiklikleri Ön izleyin !!!</string>
+	<key>Selected HomePage:</key>
+	<string>Seçili Ana Sayfa:</string>
+	<key>Shadow Radius:</key>
+	<string>Gölge Yarıçapı:</string>
+	<key>Show HomeSwitcher</key>
+	<string>HomeSwitcher’i Göster</string>
+	<key>Show On Selected Page</key>
+	<string>Seçilen Sayfada Göster</string>
+	<key>Show/Hide HomeSwitcher</key>
+	<string>HomeSwitcher’i Göster/Gizle</string>
+    <key>Developer</key>
+    <string>Yazılımcı</string>
+    <key>Translators</key>
+    <string>tercümanlar</string>
+    <key>Serif61 - Turkish</key>
+    <string>Serif61 - Türkçe</string>
+</dict>
+</plist>

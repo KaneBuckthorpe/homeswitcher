@@ -1,13 +1,13 @@
 #import "HSWindow.h"
 
 @implementation HSWindow
-- (bool)_shouldCreateContextAsSecure {
-    return YES;
+-(bool)_shouldCreateContextAsSecure{
+return YES;
 }
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-    for (UIView *subview in self.subviews) {
-        if ([subview hitTest:[self convertPoint:point toView:subview]
-                   withEvent:event] != nil) {
+-(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    for (UIView* subview in self.subviews ) {
+        if ( [subview hitTest:[self convertPoint:point toView:subview] withEvent:event] != nil ) {
             return YES;
         }
     }

@@ -1,7 +1,7 @@
-Package: com.indieDev.homeSwitcher
+Package: com.indiedev.homeswitcher
 Name: HomeSwitcher
-Depends: mobilesubstrate
-Version: 2.2.7
+Depends: mobilesubstrate, com.kaneb.kbpreferences, com.kaneb.kbapplist
+Version: 2.3.4
 Architecture: iphoneos-arm
 Description: Alternative SystemWide App Switcher
 Maintainer: indieDev

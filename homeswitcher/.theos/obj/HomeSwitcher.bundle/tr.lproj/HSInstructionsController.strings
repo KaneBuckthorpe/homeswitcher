@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Appcards -Horizontal Mode</key>
+	<string>Uygulama Kartı-Yatay Mod</string>
+	<key>Appcards -Vertical Mode</key>
+	<string>Uygulama Kartı - Dikey Mod</string>
+	<key>Hidden Button - Left</key>
+	<string>Gizli Düğme - Sol</string>
+	<key>Hidden Button - Right</key>
+	<string>Gizli Düğme - Sağ</string>
+	<key>Hidden Button - center (below central icon)</key>
+	<string>Gizli Düğme - Orta (Orta Simgenin Altında)</string>
+	<key>Instructions</key>
+	<string>Talimatlar</string>
+	<key>•Hold and drag to move the switcher</key>
+	<string>• Hareket Ettirmek için Basılı Tut</string>
+	<key>•Swipe down to open App</key>
+	<string>• Uygulama Açmak için Aşağı Kaydır</string>
+	<key>•Swipe left to close app </key>
+	<string>• Uygulama Kapatmak için Sola Kaydır</string>
+	<key>•Swipe right to open App</key>
+	<string>• Uygulama Açmak için Sağa Kaydır</string>
+	<key>•Swipe up to close app </key>
+	<string>• Uygulama Kapatmak için Yukarı Kaydır</string>
+	<key>•Tap to Scroll to center</key>
+	<string>• Merkeze Kaydırmak için Dokun</string>
+	<key>•Tap to Scroll to least recent (Right)</key>
+	<string>• En Son Kaydırılana Gitmek için Dokun (Sağ)</string>
+	<key>•Tap to Scroll to most recent (Left)</key>
+	<string>• En Son Kaydırılana Gitmek için Dokun (Sol)</string>
+</dict>
+</plist>

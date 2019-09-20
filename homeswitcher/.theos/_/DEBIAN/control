@@ -1,0 +1,10 @@
+Package: com.indiedev.homeswitcher
+Name: HomeSwitcher
+Depends: mobilesubstrate, com.kaneb.kbpreferences, com.kaneb.kbapplist
+Architecture: iphoneos-arm
+Description: Alternative SystemWide App Switcher
+Maintainer: indieDev
+Author: indieDevKB
+Section: Tweaks
+Version: 2.3.4
+Installed-Size: 988

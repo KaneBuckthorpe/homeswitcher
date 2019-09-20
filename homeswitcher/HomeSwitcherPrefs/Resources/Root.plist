@@ -49,40 +49,32 @@
 			<string>com.kaneb.HomeSwitcher</string>
 			<key>key</key>
 			<string>alwaysOnHomescreen</string>
+			<key>id</key>
+			<string>alwaysOnHomescreen</string>
 			<key>label</key>
 			<string>Show On Selected Page</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSTitleValueCell</string>
-			<key>id</key>
-			<string>pageNumber</string>
-			<key>label</key>
-			<string>Homepage To Display Switcher:</string>
-		</dict>
-		<dict>
 			<key>PostNotification</key>
 			<string>com.kaneb.HomeSwitcher/HSPrefChanged</string>
-			<key>cell</key>
-			<string>PSSliderCell</string>
 			<key>cellClass</key>
-			<string>HSSliderCell</string>
+			<string>KBStepperCell</string>
 			<key>default</key>
 			<integer>1</integer>
 			<key>defaults</key>
 			<string>com.kaneb.HomeSwitcher</string>
-			<key>id</key>
-			<string>pageSliderNumber</string>
-			<key>isSegmented</key>
-			<true/>
 			<key>key</key>
 			<string>pageSliderNumber</string>
-			<key>leftImage</key>
-			<string></string>
-			<key>rightImage</key>
-			<string></string>
-			<key>showValue</key>
-			<false/>
+			<key>label</key>
+			<string>Selected HomePage:</string>
+			<key>minimum</key>
+			<string>0</string>
+			<key>maximum</key>
+			<string>10</string>
+			<key>stepValue</key>
+			<string>1</string>
+			<key>dependsOnID</key>
+			<string>alwaysOnHomescreen</string>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -127,21 +119,30 @@
 			<string>Enable Free Flow Scrolling </string>
 		</dict>
 		<dict>
+			<key>key</key>
+			<string>selectedApps</string>
+			<key>defaults</key>
+			<string>com.kaneb.HomeSwitcher</string>
+			<key>postNotification</key>
+			<string>com.kaneb.HomeSwitcher/HSCollectionViewPrefChanged</string>
+			<key>appList</key>
+			<string>allApps</string>
+			<key>label</key>
+			<string>Choose Apps To Blur</string>
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>detail</key>
-			<string>KBAppList</string>
+			<string>ALViewController</string>
 			<key>icon</key>
 			<string>hide</string>
-			<key>label</key>
-			<string>Choose Apps To Blur</string>
+			<key>isController</key>
+			<true/>
 		</dict>
-
 		<dict>
 			<key>PostNotification</key>
 			<string>com.kaneb.HomeSwitcher/HSPrefChanged</string>
 			<key>cellClass</key>
-			<string>PSStepperCell</string>
+			<string>KBStepperCell</string>
 			<key>default</key>
 			<integer>50</integer>
 			<key>defaults</key>
@@ -152,14 +153,18 @@
 			<string>appcardSize</string>
 			<key>label</key>
 			<string>AppCards Size:</string>
-			<key>minValue</key>
+			<key>minimum</key>
 			<string>10</string>
+			<key>stepValue</key>
+			<string>5</string>
+			<key>showPercentage</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
 			<string>com.kaneb.HomeSwitcher/HSPrefChanged</string>
 			<key>cellClass</key>
-			<string>PSStepperCell</string>
+			<string>KBStepperCell</string>
 			<key>default</key>
 			<integer>30</integer>
 			<key>defaults</key>
@@ -170,14 +175,18 @@
 			<string>shadowRadius</string>
 			<key>label</key>
 			<string>Shadow Radius:</string>
-			<key>minValue</key>
+			<key>minimum</key>
 			<string>0</string>
+			<key>stepValue</key>
+			<string>5</string>
+			<key>showPercentage</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
 			<string>com.kaneb.HomeSwitcher/HSPrefChanged</string>
 			<key>cellClass</key>
-			<string>PSStepperCell</string>
+			<string>KBStepperCell</string>
 			<key>default</key>
 			<integer>20</integer>
 			<key>defaults</key>
@@ -188,8 +197,26 @@
 			<string>gestureViewThickness</string>
 			<key>label</key>
 			<string>Hidden Views Thickness</string>
-			<key>minValue</key>
+			<key>minimum</key>
 			<string>10</string>
+			<key>stepValue</key>
+			<string>5</string>
+			<key>showPercentage</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.kaneb.HomeSwitcher/HSPrefChanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.kaneb.HomeSwitcher</string>
+			<key>key</key>
+			<string>draggableSwitcher</string>
+			<key>label</key>
+			<string>Enable Moving Of Switcher</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -231,7 +258,7 @@
 		</dict>
 		<dict>
 			<key>activatorListener</key>
-			<string>com.indiedevkb.hideSwitcher</string>
+			<string>com.easyaccess.toggleshowing</string>
 			<key>bundle</key>
 			<string>LibActivator</string>
 			<key>cell</key>
@@ -265,47 +292,61 @@
 			<key>footerText</key>
 			<string>Credit to HomeSwitchers Icon Designer @Degrager_Dev</string>
 			<key>label</key>
-			<string>developer</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSStaticTextCell</string>
-			<key>cellClass</key>
-			<string>KBButtonCell</string>
-			<key>height</key>
-			<integer>100</integer>
-			<key>label</key>
-			<string>Kane Buckthorpe</string>
-			<key>platform</key>
 			<string>Developer</string>
 		</dict>
 		<dict>
-			<key>action</key>
-			<string>twitter</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
 			<key>cellClass</key>
-			<string>KBButtonCell</string>
+			<string>KBFooterCell</string>
 			<key>height</key>
-			<integer>50</integer>
+			<string>80</string>
+			<key>icon</key>
+			<string>https://twitter.com/indiedevkb/profile_image</string>
 			<key>label</key>
-			<string>@IndieDevKB</string>
-			<key>platform</key>
-			<string>Twitter</string>
+			<string>Kane Buckthorpe</string>
+			<key>roundIcon</key>
+			<true/>
+			<key>socialLinks</key>
+			<array>
+				<dict>
+					<key>icon</key>
+					<string>/Library/Frameworks/KBPreferences.framework/twitter</string>
+					<key>link</key>
+					<string>https://twitter.com/indieDevKB</string>
+				</dict>
+				<dict>
+					<key>icon</key>
+					<string>/Library/Frameworks/KBPreferences.framework/paypal</string>
+					<key>link</key>
+					<string>https://www.paypal.me/kanebuckthorpe/2.00</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
-			<key>action</key>
-			<string>paypal</string>
 			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>cellClass</key>
-			<string>KBButtonCell</string>
-			<key>height</key>
-			<integer>50</integer>
+			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Send Some Love</string>
-			<key>platform</key>
-			<string>PayPal</string>
+			<string>Translators</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>KBFooterCell</string>
+			<key>height</key>
+			<string>60</string>
+			<key>icon</key>
+			<string>https://twitter.com/CelikSerif61/profile_image</string>
+			<key>label</key>
+			<string>Serif61 - Turkish</string>
+			<key>roundIcon</key>
+			<true/>
+			<key>socialLinks</key>
+			<array>
+				<dict>
+					<key>icon</key>
+					<string>/Library/Frameworks/KBPreferences.framework/twitter</string>
+					<key>link</key>
+					<string>https://twitter.com/CelikSerif61</string>
+				</dict>
+			</array>
 		</dict>
 	</array>
 	<key>title</key>
